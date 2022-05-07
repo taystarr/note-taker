@@ -9,8 +9,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// CRUD set up
-
 // html routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
@@ -31,7 +29,28 @@ app.get('/api/notes', (req, res) => {
 });
 
 // Create!! note-add to db
+// app.post('/api/notes', (req, res) => {
+//     const notes = JSON.parse(data);
+//     notes.id = uuid.v4();
+//     const note = createNewNote(req.body, notes);
+//     res.json(note);
+// });
 
+// to create notes and save to db
+app.post('/api/notes', (req, res) => {
+    notes = fs.readFileSync('./db/db.json');
+    notes = JSON.parse(notes);
+
+    // couldn't figure out uuid so used .length ¯\_(ツ)_/¯
+    req.body.id = notes.length;
+    notes.push(req.body);
+    notes = JSON.stringify(notes);
+
+    fs.writeFile('./db/db.json', notes, function (err){
+        if (err) throw err;
+    }); 
+    res.json(JSON.parse(notes));
+});
 
 
 // keep end of page
