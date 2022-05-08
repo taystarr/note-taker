@@ -16,4 +16,4 @@ I also of course would have liked to work on the DELETE method for deleting note
 
 ![alt text](./NTSS.png)
 
-### Click [here](https://fathomless-fortress-53272.herokuapp.com/notes) to view the deployed application on Heroku!
+### Click [here](https://fathomless-fortress-53272.herokuapp.com) to view the deployed application on Heroku!
